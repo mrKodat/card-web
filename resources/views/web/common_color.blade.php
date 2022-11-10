@@ -1,0 +1,36 @@
+$ran = 'text-primary';
+if ( == 'Phone'){
+    ran = 'phone-icon';
+}elseif($contact->title == 'Website'){
+    ran = 'website-icon';
+}elseif($contact->title == 'Address'){
+    ran = 'location-icon';
+}elseif($contact->title == 'Email'){
+    ran = 'email-icon';
+}elseif($contact->title == 'Facebook'){
+    ran = 'facebook-icon';
+}elseif($contact->title == 'Instagram'){
+    $ran = 'insta-icon';
+}elseif($contact->title == 'Linkdin'){
+    $ran = 'linkedin-icon';
+}elseif($contact->title == 'Twitter'){
+    $ran = 'twitter-icon';
+}elseif($contact->title == 'Youtube'){
+    $ran = 'youtube-icon';
+}elseif($contact->title == 'Behance'){
+    $ran = 'behance-icon';
+}elseif($contact->title == 'Dribble'){
+    $ran = 'dribbble-icon';
+}elseif($contact->title == 'Figma'){
+    $ran = 'figma-icon';
+}elseif($contact->title == 'Messenger'){
+    $ran = 'messenger-icon';
+}elseif($contact->title == 'Pinterest'){
+    $ran = 'printrest-icon';
+}elseif($contact->title == 'Tik-tok'){
+    $ran = 'tiktok-icon';
+}elseif($contact->title == 'Whatsapp'){
+    $ran = 'whatsapp-icon';
+}elseif($contact->title == 'Website')
+    $ran = 'website-icon';
+}
