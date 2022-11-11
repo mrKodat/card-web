@@ -20,6 +20,9 @@ class helper
         if (Str::contains($image, 'authformbgimage')) {
             $path = url('/storage/app/public/admin-assets/images/' . $image);
         }
+        if (Str::contains($image, 'contac')) {
+            $path = url('/storage/app/public/admin-assets/images/' . $image);
+        }
         if (Str::contains($image, 'user') || Str::contains($image, 'profile')) {
             $path = url('/storage/app/public/admin-assets/images/profile/' . $image);
         }
