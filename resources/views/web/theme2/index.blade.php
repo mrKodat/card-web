@@ -61,11 +61,7 @@
                 <div class="col-lg-8 col-12">
                     <div class="card bg-light border-0 mb-5">
                         <div class="theme2-cover">
-                            @if ($basicinfo->banner_image == '')
-                            <img src="{{ helper::image_path('default-banner.jpg') }}" alt="" class="cover-img">
-                            @else
-                            <img src="{{ helper::image_path($basicinfo->banner_image) }}" class="cover-img">
-                            @endif
+                           
                             <div class=" profile-sec">
                                 @if ($basicinfo->profile_image == '')
                                 <img src="{{ helper::image_path('default-profile.jpg') }}" alt="" class="profile-img">
@@ -79,14 +75,19 @@
                             </div>
                         </div>
                         <div class="card-body main2-sec">
-                            <div class="text-center">
-                                <p>{!! clean(nl2br(e($basicinfo->description)) ) !!}</p>
-                            </div>
+                          
                             @if (helper::section_aviable('contact_info', $basicinfo->id, $basicinfo->vendor_id) == 1 &&
                             count($contactinfo) > 0)
                             <div class="pt-5">
                                 <div class="container">
                                     <div class="row justify-content-center contact2-sec">
+                                        <a href="{{ URL::to($basicinfo->slug . '/savecard') }}" class="  col-md-3 text-center  align-items-center" target="_blank">
+                                         <i class="fa-duotone fa-address-book"></i>
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">Contact</p>
+                                               
+                                            </div>
+                                        </a>
                                     @foreach ($contactinfo as $contact)
                                     @if ($contact->type == 1)
                                     @if ($contact->contact_info == url($contact->contact_info))
@@ -101,7 +102,63 @@
                                             {!! ($contact->icon ) !!}
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
-                                                <p class="content-inner-text text-dark">{{ $contact->contact_info }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                    @elseif($contact->title == 'Whatsapp')
+                                        <a href="https://wa.me/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                            {!! ($contact->icon ) !!}
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                     @elseif($contact->title == 'Website')
+                                        <a href="https://{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                            {!! ($contact->icon ) !!}
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                    @elseif($contact->title == 'Linkdin')
+                                        <a href="https://www.linkedin.com/in/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                            {!! ($contact->icon ) !!}
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                    @elseif($contact->title == 'Facebook')
+                                        <a href="https://facebook.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                            {!! ($contact->icon ) !!}
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                    @elseif($contact->title == 'Instagram')
+                                        <a href="https://instagram.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                            {!! ($contact->icon ) !!}
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                    @elseif($contact->title == 'Youtube')
+                                        <a href="https://youtube.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                            {!! ($contact->icon ) !!}
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                    @elseif($contact->title == 'Twitter')
+                                        <a href="https://twitter.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                            {!! ($contact->icon ) !!}
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
                                             </div>
                                         </a>
                                     @elseif($contact->title == 'Phone')
@@ -109,7 +166,7 @@
                                             {!! ($contact->icon ) !!}
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
-                                                <p class="content-inner-text text-dark">{{ $contact->contact_info }}</p>
+                                               
                                             </div>
                                         </a>
                                     @elseif($contact->title == 'Email')
@@ -117,15 +174,15 @@
                                             {!! ($contact->icon ) !!}
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
-                                                <p class="content-inner-text text-dark">{{ $contact->contact_info }}</p>
+                                               
                                             </div>
                                         </a>
                                     @else
-                                        <a href="{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                        <a href="https://{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
                                             {!! ($contact->icon ) !!}
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
-                                                <p class="content-inner-text text-dark">{{ $contact->contact_info }}</p>
+                                               
                                             </div>
                                         </a>                                    
                                     @endif
@@ -264,11 +321,8 @@
                         </div>
                         @endif
                         <div class="more2-sec pb-5">
-                            <h2 class="more2-text mb-3 text-center">{{ trans('labels.more') }}</h2>
-                            <a href="{{ URL::to($basicinfo->slug . '/savecard') }}" class="btn coman-btn mx-auto d-block col-lg-6 col-sm-6 mb-4 text-white">
-                                <i class="fa-duotone fa-download"></i>
-                                {{ trans('labels.save_card') }}
-                            </a>
+                            
+                         
                             <a class="btn coman-btn mx-auto d-block col-lg-6 col-sm-6 mb-4 text-white" data-bs-toggle="modal" data-bs-target="#share_card_modal">
                                 <i class="fa-duotone fa-share-all"></i>
                                 {{ trans('labels.share_card') }}
@@ -331,10 +385,7 @@
                             </div>
                         </div>
                         @endif
-                        <div class="footer pb-5 text-center">
-                            <h2>{{ trans('labels.thank_you') }}</h2>
-                            <p>{{$basicinfo->copyright}}</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
