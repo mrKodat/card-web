@@ -72,8 +72,7 @@ class UserController extends Controller
             if( ini_get('allow_url_fopen') ) {
                 $payload = file_get_contents('https://paponapps.co.in/api/keyverify.php?url='.str_replace('checklogin', '', url()->current()).'&type=login');
                 $obj = json_decode($payload);
-
-                if ($obj->status == '1') {
+                if ($obj->status == '2') {
                     $request->validate([
                         'email' => 'required|email',
                         'password' => 'required'
@@ -392,7 +391,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function systemverification(Request $request)
+   public function systemverification(Request $request)
     {
         if (ini_get('allow_url_fopen')) {
             $username = str_replace(' ', '', $request->envato_username);
