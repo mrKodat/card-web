@@ -557,7 +557,7 @@ class BusinessController extends Controller
         ]);
         if ($request->og_image != "") {
             $request->validate([
-                'og_image' => 'required|max:1024',
+                'og_image' => 'required|max:9216',
             ], [
                 "og_image.required" => trans('messages.og_image_required'),
                 "og_image.max" => trans('messages.image_max_size'),
