@@ -29,8 +29,8 @@ class SettingsController extends Controller
             ]);
             if ($request->file('logo') || $request->file('favicon') != "") {
                 $request->validate([
-                    'logo' => 'image|max:1024',
-                    'favicon' => 'image|max:1024',
+                    'logo' => 'image|max:9216',
+                    'favicon' => 'image|max:9216',
                 ], [
                     "logo.image" => trans('messages.enter_image_file'),
                     "logo.max" => trans('messages.image_max_size'),
@@ -68,8 +68,8 @@ class SettingsController extends Controller
             ]);
             if ($request->file('logo') || $request->file('favicon') != "") {
                 $request->validate([
-                    'logo' => 'image|max:1024',
-                    'favicon' => 'image|max:1024',
+                    'logo' => 'image|max:9216',
+                    'favicon' => 'image|max:9216',
                 ], [
                     "logo.image" => trans('messages.enter_image_file'),
                     "logo.max" => trans('messages.image_max_size'),

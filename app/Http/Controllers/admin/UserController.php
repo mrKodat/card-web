@@ -204,7 +204,7 @@ class UserController extends Controller
         if ($request->file('profile') != "") {
             $userdata = User::find($request->id);
             $request->validate([
-                'profile' => 'image|max:1024',
+                'profile' => 'image|max:9216',
             ], [
                 "profile.image" => trans('messages.enter_image_file'),
                 "profile.max" => trans('messages.image_max_size'),
