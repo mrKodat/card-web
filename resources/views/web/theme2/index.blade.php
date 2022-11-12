@@ -81,10 +81,10 @@
                             <div class="pt-5">
                                 <div class="container">
                                     <div class="row justify-content-center contact2-sec">
-                                        <a href="{{ URL::to($basicinfo->slug . '/savecard') }}" class="  col-md-3 text-center  align-items-center" target="_blank">
-                                         <i class="fa-duotone fa-address-book"></i>
+                                        <a href="{{ URL::to($basicinfo->slug . '/savecard') }}" class="   col-md-3 text-center contect-box" target="_blank">
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-contacts.png') }}" alt="">
                                             <div class="contact2-text">
-                                                <p class="text-muted mb-1">Contact</p>
+                                                <p class="text-muted mb-1">Add Contact</p>
                                                
                                             </div>
                                         </a>
@@ -99,7 +99,7 @@
                                         </a>
                                     @elseif($contact->title == 'Address')
                                         <a href="https://www.google.com/maps/place/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-map.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -107,7 +107,7 @@
                                         </a>
                                     @elseif($contact->title == 'Whatsapp')
                                         <a href="https://wa.me/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-whatsapp.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -115,7 +115,15 @@
                                         </a>
                                      @elseif($contact->title == 'Website')
                                         <a href="https://{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-website.png') }}" alt="">
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                        </a>
+                                        @elseif($contact->title == 'Tiktok')
+                                        <a href="https://tiktok.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-tiktok.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -123,7 +131,7 @@
                                         </a>
                                     @elseif($contact->title == 'Linkdin')
                                         <a href="https://www.linkedin.com/in/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-linkedin.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -131,7 +139,7 @@
                                         </a>
                                     @elseif($contact->title == 'Facebook')
                                         <a href="https://facebook.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-facebook.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -139,7 +147,7 @@
                                         </a>
                                     @elseif($contact->title == 'Instagram')
                                         <a href="https://instagram.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-instagram.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -147,7 +155,7 @@
                                         </a>
                                     @elseif($contact->title == 'Youtube')
                                         <a href="https://youtube.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-youtube.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -155,7 +163,7 @@
                                         </a>
                                     @elseif($contact->title == 'Twitter')
                                         <a href="https://twitter.com/{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-twitter.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -163,7 +171,7 @@
                                         </a>
                                     @elseif($contact->title == 'Phone')
                                         <a href="tel:{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-phone.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
@@ -171,7 +179,7 @@
                                         </a>
                                     @elseif($contact->title == 'Email')
                                         <a href="mailto:{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
-                                            {!! ($contact->icon ) !!}
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-mail.png') }}" alt="">
                                             <div class="contact2-text">
                                                 <p class="text-muted mb-1">{{ $contact->title }}</p>
                                                
