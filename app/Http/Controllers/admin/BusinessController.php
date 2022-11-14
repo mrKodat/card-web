@@ -23,6 +23,7 @@ class BusinessController extends Controller
         $business = Businesscard::where('vendor_id', Auth::user()->id)->get();
         return view('admin.business.business', compact('business'));
     }
+    
     public function business_add(Request $request)
     {
         if (Auth::user()->plan_id != "") {
@@ -41,7 +42,7 @@ class BusinessController extends Controller
                     $business->vendor_id = Auth::user()->id;
                     $business->title = $request->business_name;
                     $business->slug = $slug . '-' . rand(0000, 9999);
-                    $business->themes_id = "1";
+                    $business->themes_id = "2";
                     $business->web_layout = "1";
                     $business->primary_color = "#2a3042";
                     $business->save();
@@ -161,9 +162,7 @@ class BusinessController extends Controller
             'sub_title' => 'required',
             'designation' => 'required',
             'personalized_link' => 'required|unique:business_card,slug,' . $businessdata->id,
-            'description' => 'required',
-            'copyright' => 'required',
-            'themecheckbox' => 'required',
+            
         ], [
             "title.required" => trans('messages.business_name_required'),
             "sub_title.required" => trans('messages.sub_title_required'),
@@ -175,7 +174,7 @@ class BusinessController extends Controller
         ]);
         if ($request->file('profile') != "") {
             $request->validate([
-                'profile' => 'required|image|max:500',
+                'profile' => 'required|image|max:9000',
             ], [
                 "profile.image" => trans('messages.enter_image_file'),
                 "profile.max" => trans('messages.image_max_size'),
@@ -191,7 +190,7 @@ class BusinessController extends Controller
         }
         if ($request->file('banner') != "") {
             $request->validate([
-                'banner' => 'required|image|max:500',
+                'banner' => 'required|image|max:9000',
             ], [
                 "banner.image" => trans('messages.enter_image_file'),
                 "banner.max" => trans('messages.image_max_size'),
@@ -227,9 +226,9 @@ class BusinessController extends Controller
         $businessdata->slug = $slug;
         $businessdata->description = $request->description;
         $businessdata->copyright = $request->copyright;
-        $businessdata->themes_id = $request->themecheckbox;
-        $businessdata->web_layout = $request->web_layout;
-        $businessdata->primary_color = $request->primary_color;
+        $businessdata->themes_id = 2;
+        $businessdata->web_layout = 1;
+        $businessdata->primary_color = #2a3042;
         $businessdata->save();
         return redirect()->back()->with('success', trans('messages.success'));
     }
@@ -557,7 +556,7 @@ class BusinessController extends Controller
         ]);
         if ($request->og_image != "") {
             $request->validate([
-                'og_image' => 'required|max:9216',
+                'og_image' => 'required|max:1024',
             ], [
                 "og_image.required" => trans('messages.og_image_required'),
                 "og_image.max" => trans('messages.image_max_size'),

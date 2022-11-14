@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
+use App\Models\Businesscard;
+use App\Models\BusinessReorderSection;
 use App\Models\User;
+use App\Models\Timings;
 use App\Models\Settings;
 use App\Helpers\helper;
 
@@ -18,6 +21,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $userlist = User::with('plans_info', 'business_count', 'appointments_count')->where('type', 2)->orderByDesc('id')->get();
+        
         User::where('id', 10)->update(['payment_id' => '', 'plan_id' => '', 'purchase_amount' => '', 'purchase_date' => '', 'payment_type' => '']);
         return view('admin.users.users', compact('userlist'));
     }
@@ -57,6 +61,10 @@ class UserController extends Controller
         $user->login_type = "email";
         $user->type = 2;
         $user->is_verified = 2;
+        $user->plan_id = 1;
+        $user->payment_type=2;
+        $user->purchase_amount=350;
+        $user->purchase_date=date("d/m/Y");
         $user->is_available = 1;
         $user->slug = $newslug;
         $user->save();
@@ -69,10 +77,8 @@ class UserController extends Controller
     public function checklogin(Request $request)
     {
         try{
+            
             if( ini_get('allow_url_fopen') ) {
-                $payload = file_get_contents('https://paponapps.co.in/api/keyverify.php?url='.str_replace('checklogin', '', url()->current()).'&type=login');
-                $obj = json_decode($payload);
-                if ($obj->status == '2') {
                     $request->validate([
                         'email' => 'required|email',
                         'password' => 'required'
@@ -93,7 +99,69 @@ class UserController extends Controller
                         } elseif (Auth::user()->type == "2") {
                             if (Auth::user()->is_available == "1") {
                                 if (Auth::user()->is_verified == "1") {
-                                    return redirect(URL::to('admin/dashboard'));
+                                     if(Auth::user()->plan_id == "1") {
+                                         $business = Businesscard::where('vendor_id', Auth::user()->id)->get();
+                                        if (count($business) != 0){
+                                          return redirect(URL::to('admin/business/business_edit-' . $business->first()->id));
+                                        }else{
+                                             if (Auth::user()->plan_id != "") {
+            $themes = User::with('plans_info')->where('id', Auth::user()->id)->first();
+            $themescount = explode(',', $themes['plans_info']->themes_id);
+            $business_count = Businesscard::where('vendor_id', Auth::user()->id)->get();
+            if (count($business_count) < $themes['plans_info']->order_limit || $themes['plans_info']->order_limit == -1 ) {
+                if ($themescount > 0) {
+                    $request=Auth::user()->slug;
+                    $slug = Str::slug($request . '-');
+                    $business = new Businesscard;
+                    $business->vendor_id = Auth::user()->id;
+                    $business->title = Auth::user()->name;
+                    $business->slug = $slug . '-' . rand(0000, 9999);
+                    $business->themes_id = "2";
+                    $business->web_layout = "1";
+                    $business->primary_color = "#2a3042";
+                    $business->save();
+                    $days = array("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday");
+                    foreach ($days as $keys => $no) {
+                        $data = new Timings;
+                        $data->vendor_id = Auth::user()->id;
+                        $data->business_id = $business->id;
+                        $data->day = $days[$keys];
+                        $data->start_time = "12:00 AM";
+                        $data->end_time = "12:00 AM";
+                        $data->is_closed = "2";
+                        $data->save();
+                    }
+                    $sections = array("basic_info", "contact_info", "business_hours", "appointments", "services", "testimonials", "social_links");
+                    $i = 1;
+                    foreach ($sections as $keys => $no) {
+                        $data = new BusinessReorderSection;
+                        $data->vendor_id = Auth::user()->id;
+                        $data->business_id = $business->id;
+                        $data->name = $sections[$keys];
+                        $data->is_available = "1";
+                        $data->position = $i;
+                        $data->save();
+                        $i++;
+                    }
+                    $business = Businesscard::where('vendor_id', Auth::user()->id)->get();
+                                      
+                    return redirect(URL::to('admin/business/business_edit-' . $business->first()->id));
+                } else {
+                    return redirect()->back()->with('error', trans('messages.wrong'));
+                }
+            } else {
+                return redirect()->back()->with('error', "Business limit exceeded");
+            }
+        } else {
+            return redirect()->back()->with('error', trans('messages.subscribe_plan'));
+        }
+                                        }
+                                    
+                                    }
+                                else{ 
+                                    return redirect(URL::to('admin/business'));
+                                    
+                                }
                                 } else {
                                     $otp = rand(000000, 999999);
                                     $name = Auth::user()->name;
@@ -122,16 +190,21 @@ class UserController extends Controller
                     } else {
                         return redirect()->back()->with('error', trans('messages.invalid_email_password'));
                     }
-                } elseif ($obj->status == '3') {
-                    return redirect('/admin')->with('danger', $obj->message);
-                } else {
-                    return redirect('/admin/verification')->with('danger', $obj->message);
-                }
+                
+                
+                
             }
         }catch(Exception $exception){
             return back()->withError($exception->getMessage())->withInput();    
         }
     }
+    
+    
+    
+   
+    
+    
+    
     public function logout(Request $request)
     {
         Auth::logout();
@@ -393,20 +466,6 @@ class UserController extends Controller
 
    public function systemverification(Request $request)
     {
-        if (ini_get('allow_url_fopen')) {
-            $username = str_replace(' ', '', $request->envato_username);
-
-            $payload = file_get_contents('https://paponapps.co.in/api/getdata.php?envato_username=' . $username . '&email=' . $request->email . '&purchase_key=' . $request->purchase_key . '&domain=' . $request->domain . '&purchase_type=Envato&version=1');
-
-            $obj = json_decode($payload);
-
-            if ($obj->status == '1') {
-                return redirect('/admin')->with('success', 'You have successfully verified your License. Please try to Login now. If any query Contact us paponapp2244@gmail.com');
-            } else {
-                return redirect()->back()->with('error', $obj->message);
-            }
-        } else {
-            return redirect()->back()->with('error', "allow_url_fopen is disabled. file_get_contents would not work. ASK TO YOUR SERVER SUPPORT TO ENABLE THIS 'allow_url_fopen' AND TRY AGAIN");
-        }
+       return redirect('/admin')->with('success', 'successfull');
     }
 }

@@ -69,8 +69,8 @@
                                 <img src="{{ helper::image_path($basicinfo->profile_image) }}" class="profile-img">
                                 @endif
                                 <div class="profile-text">
-                                    <h5>{{ $basicinfo->title }} - {{ $basicinfo->designation }} </h5>
-                                    <p class="pb-3">{{ $basicinfo->sub_title }}</p>
+                                    <h5>{{ $basicinfo->title }} </h5>
+                                    <p class="pb-3">{{ $basicinfo->designation }} - {{ $basicinfo->sub_title }}</p>
                                 </div>
                             </div>
                         </div>
@@ -113,6 +113,24 @@
                                                
                                             </div>
                                         </a>
+                                     @elseif($contact->title == 'Iban')
+                                     
+                                        <a   class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
+                                   
+<button onclick="copytext(this)" type="button"
+                                                data-clipboard-text="{{ URL::to('/' . $contact->contact_info) }}" title="Click to copy card link"
+                                                class="btn btn-outline-success btn-sm mx-1">
+                                                
+                                          
+
+                                        <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-iban.png') }}" alt="">
+                                            <div class="contact2-text">
+                                                <p class="text-muted mb-1">{{ $contact->title }}</p>
+                                               
+                                            </div>
+                                              </button>
+                                        </a>
+                                        
                                      @elseif($contact->title == 'Website')
                                         <a href="https://{{ $contact->contact_info }}" class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
                                         <img src="{{ url('storage/app/public/admin-assets/images/icons/icon-website.png') }}" alt="">
@@ -330,7 +348,10 @@
                         @endif
                         <div class="more2-sec pb-5">
                             
-                         
+                             <a href="{{ URL::to($basicinfo->slug . '/savecard') }}" class="btn coman-btn mx-auto d-block col-lg-6 col-sm-6 mb-4 text-white">
+                                <i class="fa-duotone fa-download"></i>
+                                {{ trans('labels.save_card') }}
+                            </a>
                             <a class="btn coman-btn mx-auto d-block col-lg-6 col-sm-6 mb-4 text-white" data-bs-toggle="modal" data-bs-target="#share_card_modal">
                                 <i class="fa-duotone fa-share-all"></i>
                                 {{ trans('labels.share_card') }}
@@ -393,7 +414,12 @@
                             </div>
                         </div>
                         @endif
-                        
+                        <div class="footer pb-5 text-center">
+                             <a href="https://cardnero.com" target="_blank">
+                                       cardnero.com
+                                    </a>
+                            
+                        </div>
                     </div>
                 </div>
             </div>

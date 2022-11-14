@@ -2,17 +2,11 @@
 <nav class="sidebar sidebar-lg">
     <div class="d-flex justify-content-center align-items-center mb-4">
         <div class="navbar-header-logo">
-            <a href="{{ URL::to('admin/dashboard') }}" class="text-white fs-4">{{ trans('labels.visiting_card') }}</a>
+            <a href="{{ URL::to('admin/business') }}" class="text-white fs-4">{{ trans('labels.visiting_card') }}</a>
         </div>
     </div>
     <ul class="navbar-nav">
-        <li class="nav-item mb-3">
-            <a class="nav-link {{ request()->is('admin/dashboard') || request()->is('/') ? 'active' : '' }}"
-                aria-current="page" href="{{ URL::to('admin/dashboard') }}">
-                <i class="fs-5 fa-light fa-house-user"></i>
-                <span class="mx-2">{{ trans('labels.dashboard') }}</span>
-            </a>
-        </li>
+        
         @if (Auth::user()->type == '2')
             <li class="nav-item mb-3">
                 <a class="nav-link {{ request()->is('admin/business*') ? 'active' : '' }}" aria-current="page" href="{{ URL::to('admin/business') }}">
@@ -53,6 +47,13 @@
             <a class="nav-link {{ request()->is('admin/transaction*') ? 'active' : '' }}" aria-current="page" href="{{ URL::to('admin/transaction') }}">
                 <i class="fa-light fa-file-invoice-dollar"></i>
                 <span class="mx-2">{{ trans('labels.transaction') }}</span>
+            </a>
+        </li>
+        <li class="nav-item mb-3">
+            <a class="nav-link {{ request()->is('admin/dashboard') || request()->is('/') ? 'active' : '' }}"
+                aria-current="page" href="{{ URL::to('admin/dashboard') }}">
+                <i class="fs-5 fa-light fa-house-user"></i>
+                <span class="mx-2">{{ trans('labels.dashboard') }}</span>
             </a>
         </li>
         <li class="nav-item mb-3">
@@ -74,18 +75,12 @@
 {{-- For Small Devices --}}
 <nav class="collapse collapse-horizontal sidebar sidebar-md" id="sidebarcollapse">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="{{ URL::to('admin/dashboard') }}" class="text-white fs-4">{{ trans('labels.visiting_card') }}</a>
+        <a href="{{ URL::to('admin/business') }}" class="text-white fs-4">{{ trans('labels.visiting_card') }}</a>
         <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarcollapse"
             aria-expanded="false" aria-controls="sidebarcollapse"><i class="fa-light fa-xmark"></i></button>
     </div>
     <ul class="navbar-nav">
-        <li class="nav-item mb-3">
-            <a class="nav-link {{ request()->is('admin/dashboard') || request()->is('/') ? 'active' : '' }}"
-                aria-current="page" href="{{ URL::to('admin/dashboard') }}">
-                <i class="fs-5 fa-light fa-house-user"></i>
-                <span class="mx-2">{{ trans('labels.dashboard') }}</span>
-            </a>
-        </li>
+        
         @if (Auth::user()->type == '2')
             <li class="nav-item mb-3">
                 <a class="nav-link {{ request()->is('admin/business*') ? 'active' : '' }}" aria-current="page" href="{{ URL::to('admin/business') }}">
@@ -126,6 +121,13 @@
             <a class="nav-link {{ request()->is('admin/transaction*') ? 'active' : '' }}" aria-current="page" href="{{ URL::to('admin/transaction') }}">
                 <i class="fa-light fa-file-invoice-dollar"></i>
                 <span class="mx-2">{{ trans('labels.transaction') }}</span>
+            </a>
+        </li>
+        <li class="nav-item mb-3">
+            <a class="nav-link {{ request()->is('admin/dashboard') || request()->is('/') ? 'active' : '' }}"
+                aria-current="page" href="{{ URL::to('admin/dashboard') }}">
+                <i class="fs-5 fa-light fa-house-user"></i>
+                <span class="mx-2">{{ trans('labels.dashboard') }}</span>
             </a>
         </li>
         <li class="nav-item mb-3">

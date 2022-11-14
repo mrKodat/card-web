@@ -79,7 +79,7 @@ class HomeController extends Controller
         $response->setStatusCode(200);
         $response->headers->set('Content-Type', 'text/x-vcard');
         $response->headers->set('Content-Disposition', 'attachment; filename="' . Str::slug($name,'-') . '.vcf"');
-        $response->headers->set('Content-Length', mb_strlen($content, 'utf-8'));
+        // $response->headers->set('Content-Length', mb_strlen($content, 'utf-8'));
 
         // return vcard as a download
         return $response;

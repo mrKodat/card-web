@@ -32,6 +32,9 @@
                                         <td>{{ trans('labels.action') }}</td>
                                     </tr>
                                 </thead>
+                             @if (!empty($business))
+                               
+                                 @endif
                                 @foreach ($business as $business_data)
                                     <tr>
                                         <td><a href="{{ URL::to('admin/business/business_edit-' . $business_data->id) }}"

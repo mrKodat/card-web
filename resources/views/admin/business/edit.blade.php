@@ -6,57 +6,6 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row settings">
-                <div class="col-xl-3 mb-3">
-                    <div class="card card-sticky-top border-0">
-                        <ul class="list-group list-options">
-                            <a href="#basic_info" data-tab="basic_info"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center active"
-                                aria-current="true">{{ trans('labels.basic_info') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#contact_info" data-tab="contact_info"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.contact_info') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#business_hours" data-tab="business_hours"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.business_hours') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#appointments" data-tab="appointments"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.appointments') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#services" data-tab="services"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.services') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#testimonials" data-tab="testimonials"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.testimonials') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#social_links" data-tab="social_links"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.social_links') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#reorder_section" data-tab="reorder_section"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.reorder_section') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                            <a href="#seo" data-tab="seo"
-                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
-                                aria-current="true">{{ trans('labels.seo') }}
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
                 <div class="col-xl-9">
                     <div id="basic_info">
                         <div class="row mb-5">
@@ -75,58 +24,7 @@
                                                     @error('themecheckbox')
                                                         <small class="text-danger">{{ $message }}</small>
                                                     @enderror
-                                                    <ul class="theme-selection">
-                                                        @if (in_array(1, $themescount))
-                                                            <li>
-                                                                <input type="radio" name="themecheckbox" id="theme1"
-                                                                    value="1"
-                                                                    {{ $businessdata->themes_id == '1' ? 'checked' : '' }}>
-                                                                <label for="theme1"> <img
-                                                                        src="{{ url('storage/app/public/admin-assets/images/themes/1.jpg') }}">
-                                                                </label>
-                                                            </li>
-                                                        @endif
-                                                        @if (in_array(2, $themescount))
-                                                            <li>
-                                                                <input type="radio" name="themecheckbox" id="theme2"
-                                                                    value="2"
-                                                                    {{ $businessdata->themes_id == '2' ? 'checked' : '' }}>
-                                                                <label for="theme2"> <img
-                                                                        src="{{ url('storage/app/public/admin-assets/images/themes/2.jpg') }}">
-                                                                </label>
-                                                            </li>
-                                                        @endif
-                                                        @if (in_array(3, $themescount))
-                                                            <li>
-                                                                <input type="radio" name="themecheckbox" id="theme3"
-                                                                    value="3"
-                                                                    {{ $businessdata->themes_id == '3' ? 'checked' : '' }}>
-                                                                <label for="theme3"> <img
-                                                                        src="{{ url('storage/app/public/admin-assets/images/themes/3.jpg') }}">
-                                                                </label>
-                                                            </li>
-                                                        @endif
-                                                        @if (in_array(4, $themescount))
-                                                            <li>
-                                                                <input type="radio" name="themecheckbox" id="theme4"
-                                                                    value="4"
-                                                                    {{ $businessdata->themes_id == '4' ? 'checked' : '' }}>
-                                                                <label for="theme4"> <img
-                                                                        src="{{ url('storage/app/public/admin-assets/images/themes/4.jpg') }}">
-                                                                </label>
-                                                            </li>
-                                                        @endif
-                                                        @if (in_array(5, $themescount))
-                                                            <li>
-                                                                <input type="radio" name="themecheckbox" id="theme5"
-                                                                    value="5"
-                                                                    {{ $businessdata->themes_id == '5' ? 'checked' : '' }}>
-                                                                <label for="theme5"> <img
-                                                                        src="{{ url('storage/app/public/admin-assets/images/themes/5.jpg') }}">
-                                                                </label>
-                                                            </li>
-                                                        @endif
-                                                    </ul>
+                                                    
                                                 </div>
                                                 <div class="col-sm-6 form-group">
                                                     <label class="form-label">{{ trans('labels.title') }}</label>
@@ -158,30 +56,11 @@
                                                 <div class="col-sm-6 form-group">
                                                     <div class="row">
                                                         <div class="col-6">
-                                                            <p class="form-label">{{ trans('labels.web_layout') }}</p>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input form-check-input-secondary"
-                                                                    type="radio" name="web_layout" value="1"
-                                                                    {{ @$businessdata->web_layout == 1 ? 'checked' : '' }}>
-                                                                <label
-                                                                    class="form-check-label">{{ trans('labels.ltr') }}</label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input form-check-input-secondary"
-                                                                    type="radio" name="web_layout" value="2"
-                                                                    {{ @$businessdata->web_layout == 2 ? 'checked' : '' }}>
-                                                                <label
-                                                                    class="form-check-label">{{ trans('labels.rtl') }}</label>
-                                                            </div>
+                                                           
+                                                            
+                                                            
                                                         </div>
-                                                        <div class="col-6">
-                                                            <label for="primary_color"
-                                                                class="form-label">{{ trans('labels.primary_color') }}</label>
-                                                            <input type="color"
-                                                                class="form-control form-control-color w-100 border-0"
-                                                                name="primary_color" id="primary_color"
-                                                                value="{{ $businessdata->primary_color }}">
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -199,15 +78,7 @@
                                                         <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="form-label">{{ trans('labels.copyright') }}</label>
-                                                    <input type="text" class="form-control" name="copyright"
-                                                        value="{{ $businessdata->copyright }}"
-                                                        placeholder="{{ trans('labels.copyright') }}">
-                                                    @error('copyright')
-                                                        <small class="text-danger">{{ $message }}</small>
-                                                    @enderror
-                                                </div>
+                                          
                                                 <div class=" form-group">
                                                     <label class="form-label">{{ trans('labels.description') }}</label>
                                                     <textarea class="form-control" rows="3" name="description" placeholder="{{ trans('labels.description') }}">{{ $businessdata->description }}</textarea>
@@ -300,16 +171,7 @@
                                                             type="checkbox" class="checkbox-switch"
                                                             name="contact_info_section" value="1"
                                                             {{ $contact_info_section->is_available == 1 ? 'checked' : '' }}>
-                                                        <label for="checkbox-switch{{ $contact_info_section->id }}"
-                                                            class="switch">
-                                                            <span class="switch__circle">
-                                                                <span class="switch__circle-inner"></span>
-                                                            </span>
-                                                            <span
-                                                                class="switch__left ps-2">{{ trans('labels.off') }}</span>
-                                                            <span
-                                                                class="switch__right pe-2">{{ trans('labels.on') }}</span>
-                                                        </label>
+                                                        
                                                     </div>
                                                     <button type="button" class="btn btn-outline-primary btn-sm"
                                                         data-bs-toggle="modal" data-bs-target="#contactinfo">
@@ -354,125 +216,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="business_hours">
-                        <div class="row mb-5">
-                            <div class="col-12">
-                                <div class="card border-0 box-shadow">
-                                    <div class="card-body">
-                                        <form action="{{ URL::to('admin/business/store_business_hours') }}"
-                                            method="POST">
-                                            @csrf
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h5 class="text-uppercase">{{ trans('labels.business_hours') }}</h5>
-                                                <div class="mx-2">
-                                                    <input type="hidden" name="business_hours_section_id"
-                                                        value="{{ $business_hours_section->id }}">
-                                                    <input id="checkbox-switch{{ $business_hours_section->id }}"
-                                                        type="checkbox" class="checkbox-switch"
-                                                        name="business_hours_section" value="1"
-                                                        {{ $business_hours_section->is_available == '1' ? 'checked' : '' }}>
-                                                    <label for="checkbox-switch{{ $business_hours_section->id }}"
-                                                        class="switch">
-                                                        <span class="switch__circle">
-                                                            <span class="switch__circle-inner"></span>
-                                                        </span>
-                                                        <span class="switch__left ps-2">{{ trans('labels.off') }}</span>
-                                                        <span class="switch__right pe-2">{{ trans('labels.on') }}</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            @error('day')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                            <div class="d-flex bg-light mb-3 p-2 rounded">
-                                                <div class="col-sm-2">
-                                                    <small>{{ trans('labels.day') }}</small>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <small>{{ trans('labels.start_time') }}</small>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <small>{{ trans('labels.end_time') }}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <small>{{ trans('labels.closed') }}</small>
-                                                </div>
-                                            </div>
-                                            @foreach ($timingsdata as $time)
-                                                <div class="row mb-3 px-2">
-                                                    <div class="col-sm-2 mb-2">
-                                                        @if (strtolower($time->day) == 'monday')
-                                                            <label class="form-check-label"
-                                                                for="{{ strtolower($time->day) }}">{{ trans('labels.monday') }}</label>
-                                                        @endif
-                                                        @if (strtolower($time->day) == 'tuesday')
-                                                            <label class="form-check-label"
-                                                                for="{{ strtolower($time->day) }}">{{ trans('labels.tuesday') }}</label>
-                                                        @endif
-                                                        @if (strtolower($time->day) == 'wednesday')
-                                                            <label class="form-check-label"
-                                                                for="{{ strtolower($time->day) }}">{{ trans('labels.wednesday') }}</label>
-                                                        @endif
-                                                        @if (strtolower($time->day) == 'thursday')
-                                                            <label class="form-check-label"
-                                                                for="{{ strtolower($time->day) }}">{{ trans('labels.thursday') }}</label>
-                                                        @endif
-                                                        @if (strtolower($time->day) == 'friday')
-                                                            <label class="form-check-label"
-                                                                for="{{ strtolower($time->day) }}">{{ trans('labels.friday') }}</label>
-                                                        @endif
-                                                        @if (strtolower($time->day) == 'saturday')
-                                                            <label class="form-check-label"
-                                                                for="{{ strtolower($time->day) }}">{{ trans('labels.saturday') }}</label>
-                                                        @endif
-                                                        @if (strtolower($time->day) == 'sunday')
-                                                            <label class="form-check-label"
-                                                                for="{{ strtolower($time->day) }}">{{ trans('labels.sunday') }}</label>
-                                                        @endif
-                                                        <input type="hidden" name="day[]"
-                                                            value="{{ strtolower($time->day) }}">
-                                                    </div>
-                                                    <div class="col-sm-8 mb-2">
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <input type="text" autocomplete="off"
-                                                                    class="form-control time_picker" name="start_time[]"
-                                                                    value="{{ $time->start_time }}">
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <input type="text" autocomplete="off"
-                                                                    class="form-control time_picker" name="end_time[]"
-                                                                    value="{{ $time->end_time }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-sm-2 mb-2">
-                                                        <select name="closed[]" class="form-select">
-                                                            <option value="1"
-                                                                {{ $time->is_closed == '1' ? 'selected' : '' }}>
-                                                                {{ trans('labels.yes') }}
-                                                            </option>
-                                                            <option value="2"
-                                                                {{ $time->is_closed == '2' ? 'selected' : '' }}>
-                                                                {{ trans('labels.no') }}
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                            <input type="hidden" name="business_id" value="{{ $businessdata->id }}">
-                                            <button type="submit"
-                                                class="btn btn-secondary">{{ trans('labels.save_changes') }}</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  
                     <div id="appointments">
                         <div class="row mb-5">
                             <div class="col-12">
@@ -827,39 +571,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="reorder_section">
-                        <div class="row mb-5">
-                            <div class="col-12">
-                                <div class="card border-0 box-shadow">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <h5 class="text-uppercase">{{ trans('labels.reorder_section') }}</h5>
-                                        </div>
-                                        <form
-                                            action="{{ URL::to('admin/business/store_reorder_section-' . $businessdata->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            <ul class="list-group mb-3" id="sortable">
-                                                @foreach ($reorder_section as $data)
-                                                    <input type="hidden" name="old_position[]"
-                                                        value="{{ $data->id }}">
-                                                    <li class="list-group-item py-3">
-                                                        <input type="hidden" name="position[]"
-                                                            value="{{ $data->position }}">
-                                                        <input type="hidden" name="name[]"
-                                                            value="{{ $data->name }}">
-                                                        {{ trans('labels.' . $data->name) }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                            <button type="submit"
-                                                class="btn btn-secondary">{{ trans('labels.save_changes') }}</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div id="seo">
                         <div class="row mb-5">
                             <div class="col-12">
@@ -916,6 +628,53 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 mb-3">
+                    <div class="card card-sticky-top border-0">
+                        <ul class="list-group list-options">
+                            <a href="#basic_info" data-tab="basic_info"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center active"
+                                aria-current="true">{{ trans('labels.basic_info') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                            <a href="#contact_info" data-tab="contact_info"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
+                                aria-current="true">{{ trans('labels.contact_info') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                           
+                            <a href="#appointments" data-tab="appointments"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
+                                aria-current="true">{{ trans('labels.appointments') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                            <a href="#services" data-tab="services"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
+                                aria-current="true">{{ trans('labels.services') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                            <a href="#testimonials" data-tab="testimonials"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
+                                aria-current="true">{{ trans('labels.testimonials') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                            <a href="#social_links" data-tab="social_links"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
+                                aria-current="true">{{ trans('labels.social_links') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                            <a href="#reorder_section" data-tab="reorder_section"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
+                                aria-current="true">{{ trans('labels.reorder_section') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                            <a href="#seo" data-tab="seo"
+                                class="list-group-item basicinfo p-3 list-item-secondary d-flex justify-content-between align-items-center"
+                                aria-current="true">{{ trans('labels.seo') }}
+                                <i class="fa-regular fa-angle-right"></i>
+                            </a>
+                        </ul>
                     </div>
                 </div>
             </div>
