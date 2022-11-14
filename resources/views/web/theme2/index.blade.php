@@ -117,9 +117,9 @@
                                      
                                         <a   class="{{ helper::get_icon_color($contact->title) }}  col-md-3 text-center contect-box" target="_blank">
                                    
-<button onclick="copytext(this)" type="button"
-                                                data-clipboard-text="{{ URL::to('/' . $contact->contact_info) }}" title="Click to copy card link"
-                                                class="btn btn-outline-success btn-sm mx-1">
+                                                <button onclick="copytext(this)" type="button"
+                                                data-clipboard-text="{{ $contact->contact_info }}" title="İbanı kopyala"
+                                                class="btn ">
                                                 
                                           
 
@@ -433,6 +433,24 @@
     <script>
         let rtl = {{ $basicinfo -> web_layout == 1 ? 'false' : 'true' }};
     </script>
+
+    <script>
+        $(document).ready(function() {
+            "use strict";
+            $('#datatable').DataTable();
+        });
+        function copytext(x) {
+            "use strict";
+            var temp = $("<input>");
+            $("body").append(temp);
+            temp.val($(x).attr('data-clipboard-text')).select();
+            document.execCommand("copy");
+            temp.remove();
+        }
+
+
+    </script>
+
 </body>
 
 </html>
