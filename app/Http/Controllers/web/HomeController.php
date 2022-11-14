@@ -49,8 +49,10 @@ class HomeController extends Controller
     public function savecard(Request $request)
     {
         $basicinfo = Businesscard::where('slug', $request->slug)->first();
-        $userinfo = User::where('id', $basicinfo->vendor_id)->first();
+       
         $contactinfo = Businesscontact::where('business_id', $basicinfo->id)->where('type', 1)->where('title','Address')->first();
+        $contactinfo_phone = Businesscontact::where('business_id', $basicinfo->id)->where('type', 1)->where('title','Phone')->first();
+        $contactinfo_email = Businesscontact::where('business_id', $basicinfo->id)->where('type', 1)->where('title','Email')->first();
         $vcard = new VCard();
 
         // define variables
@@ -63,8 +65,8 @@ class HomeController extends Controller
         $vcard->addCompany($basicinfo->sub_title);
         $vcard->addJobtitle($basicinfo->designation);
         $vcard->addRole('');
-        $vcard->addEmail($userinfo->email);
-        $vcard->addPhoneNumber($userinfo->mobile);
+        $vcard->addEmail(@$contactinfo_email->contact_info);
+        $vcard->addPhoneNumber(@$contactinfo_phone->contact_info);
         $vcard->addAddress(@$contactinfo->contact_info);
         $vcard->addURL(url()->previous());
 
