@@ -684,7 +684,9 @@
     @php
         $client = new \GuzzleHttp\Client();
         $res = $client->get(url('storage/app/public/admin-assets/js/contact_fields.json'));
+        $resib = $client->get(url('storage/app/public/admin-assets/js/bank_fields.json'));
         $cnt_data = json_encode(json_decode((string) $res->getBody()));
+        $bnk_data = json_encode(json_decode((string) $resib->getBody()));
         if (!empty(json_decode($cnt_data, true))) {
             foreach (json_decode($cnt_data, true) as $key => $value) {
                 $contact_json_data = $value;
@@ -692,7 +694,16 @@
         }else {
             $contact_json_data = array();
         }
+        if (!empty(json_decode($bnk_data, true))) {
+            foreach (json_decode($bnk_data, true) as $key => $value) {
+                $bank_json_data = $value;
+            }
+        }else {
+            $bank_json_data = array();
+        }
     @endphp
+
+    
     <!-- Contact Information Option Modal -->
     <div class="modal fade" id="contactinfo" tabindex="-1" aria-labelledby="contactinfoLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -724,7 +735,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="contact-info-modal">
-                        @foreach ($contact_json_data as $key => $value)
+                        @foreach ($bank_json_data as $key => $value)
                             <a class="contact-info-item" onclick="add_sociallinks(this)" data-name='{{ $value['title'] }}' data-icon="{{ $value['icon'] }}">
                                 {!! $value['icon'] !!}
                                 <span>{{ $value['title'] }}</span>
