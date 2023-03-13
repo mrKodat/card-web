@@ -105,7 +105,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
     });
 });
 // Web
-Route::get('/', [HomeController::class, 'landing']);
+//Route::get('/', [HomeController::class, 'landing']);
+Route::get('/', function () {return view('wp.index');});
 Route::get('{slug}', [HomeController::class, 'index']);
 Route::post('{slug}/store_appointments-{id}', [AppointmentsController::class, 'store_appointments']);
 Route::get('{slug}/savecard', [HomeController::class, 'savecard']);
+
+
